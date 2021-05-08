@@ -1,0 +1,265 @@
+<h2>&ensp;&ensp;Your Last Application</h2>  
+
+{% if g.user %}
+&ensp;&ensp;&ensp;<a class="action" href="{{ url_for('blog.update', id=Applications[0]['applicantID']) }}">Edit</a>
+    &ensp;<a class="action" href="{{ url_for('blog.home') }}">Delete</a>
+{% endif %}
+<article class="POST">
+  <header>        
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <style>
+      html, body {
+      min-height: 100%;
+      }
+      body, div, form, input, select, p { 
+      padding: 0;
+      margin: 0;
+      outline: none;
+      font-family: Roboto, Arial, sans-serif;
+      font-size: 14px;
+      color: #666;
+      line-height: 22px;
+      }
+      h1 {
+      position: absolute;
+      margin: 0;
+      font-size: 38px;
+      color: #fff;
+      z-index: 2;
+      }
+      p.top-info {
+      margin: 10px 0;
+      }
+      .testbox {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: inherit;
+      padding: 20px;
+      }
+      form {
+      width: 100%;
+      padding: 20px;
+      border-radius: 6px;
+      background: #fff;
+      box-shadow: 0 0 25px 0 #1c87c9; 
+      }
+     .banner {
+      position: relative;
+      height: 210px;
+      background-image: url("C:/Users/tesfa/Downloads/Photos/me.jpg");  
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      }
+      .banner::after {
+      content: "";
+      background-color: rgba(0, 0, 0, 0.6); 
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      }
+      input, select, textarea {
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      }
+      input {
+      width: calc(100% - 10px);
+      padding: 5px;
+      }
+      input[type="date"] {
+      padding: 4px 5px;
+      }
+      select {
+      width: 100%;
+      padding: 7px 0;
+      background: transparent;
+      }
+      .item:hover p, .item:hover i, .question:hover p, .question label:hover, input:hover::placeholder {
+      color: #1c87c9;
+      }
+      .item input:hover, .item select:hover {
+      border: 1px solid transparent;
+      box-shadow: 0 0 6px 0 #1c87c9;
+      color: #1c87c9;
+      }
+      .item {
+      position: relative;
+      margin: 10px 0;
+      }
+      input[type="date"]::-webkit-inner-spin-button {
+      display: none;
+      }
+      .item i, input[type="date"]::-webkit-calendar-picker-indicator {
+      position: absolute;
+      font-size: 20px;
+      color: #a9a9a9;
+      }
+      .item i {
+      right: 2%;
+      top: 30px;
+      z-index: 1;
+      }
+      [type="date"]::-webkit-calendar-picker-indicator {
+      right: 1%;
+      z-index: 2;
+      opacity: 0;
+      cursor: pointer;
+      }
+      input[type=radio]  {
+      display: none;
+      }
+      label.radio {
+      position: relative;
+      display: inline-block;
+      margin: 5px 20px 10px 0;
+      cursor: pointer;
+      }
+      .question span {
+      margin-left: 30px;
+      }
+      span.required {
+      margin-left: 0;
+      color: red;
+      }
+      label.radio:before {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 17px;
+      height: 17px;
+      border-radius: 50%;
+      border: 2px solid #ccc;
+      }
+      input[type=radio]:checked + label:before, label.radio:hover:before {
+      border: 2px solid #1c87c9;
+      }
+      label.radio:after {
+      content: "";
+      position: absolute;
+      top: 6px;
+      left: 5px;
+      width: 8px;
+      height: 4px;
+      border: 3px solid #1c87c9;
+      border-top: none;
+      border-right: none;
+      transform: rotate(-45deg);
+      opacity: 0;
+      }
+      input[type=radio]:checked + label:after {
+      opacity: 1;
+      }
+      .btn-block {
+      margin-top: 10px;
+      text-align: center;
+      }
+      button {
+      width: auto;
+      padding: 10px;
+      border: none;
+      border-radius: 5px; 
+      background: #1c87c9;
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+      cursor: pointer;
+      }
+      button:hover {
+      background: #1e6fa0;
+      }
+      @media (min-width: 568px) {
+      .name-item, .contact-item, .position-item {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      }
+      .name-item input {
+      width: calc(50% - 20px);
+      }
+      .contact-item .item, .position-item .item {
+      width: calc(50% - 8px);
+      }
+      .contact-item input, .position-item input {
+      width: calc(100% - 12px);
+      }
+      .position-item select {
+      width: 100%;
+      }
+      }
+    </style>
+  </header>
+  <body>
+    <div class="testbox">
+      <form method="POST">
+       <div class="item">
+          <p>Name<span class="required">*</span></p>
+          <div class="name-item">
+            <input type="text" name="firstname" id="firstname" placeholder="First name" value="{{ Applications[0]['firstname'] }}"required/>
+            <input type="text" name="lastname" id="lastname" placeholder="Last name" value="{{ Applications[0]['lastname'] }}"required/>
+          </div>
+       </div>
+       <div class="contact-item">
+          <div class="item">
+            <p>Email<span class="required">*</span></p>
+            <input type="text" name="email" id="email" placeholder="xx@email.com" value="{{ Applications[0]['email'] }}" required/>
+          </div>
+          <div class="item">
+            <p>Phone<span class="required">*</span></p>
+            <input type="text" name="phone" id="phone" placeholder="+11 111 111 111" value="{{Applications[0]['phone'] }}" required/>
+          </div>
+        </div>          
+
+        <div class="contact-item">
+          <div class="item">
+            <p>City<span class="required">*</span></p>
+            <input type="text" name="city" id="city" placeholder="City" value="{{Applications[0]['city'] }}" required/>
+          </div>
+          <div class="item">
+            <p>Country<span class="required">*</span></p>
+            <input type="text" name="country" id="country" placeholder="country" value="{{Applications[0]['country'] }}" required/>
+          </div>
+        </div>
+        <div class="item">
+          <p>Zipcode<span class="required">*</span></p>
+          <div class="name-item">
+            <input type="text" name="zipcode" id="zipcode" placeholder="00-000" value="{{Applications[0]['zipCode']}}"required/>
+          </div>
+        </div>
+          <div class="item">
+            <p>Street<span class="required">*</span></p>
+            <input type="text" name="streetname" id="streetname" placeholder="Street Name" value="{{ Applications[0]['streetname'] }}"required/>
+          </div>
+        <div class="item">
+            <p>Art/Science/Sports/Music/Films<span class="required">*</span></p>
+            <input type="text" name="program" id="program" placeholder="Art" value="{{ Applications[0]['programName'] }}" required/>
+          </div>
+          <div class="item">
+            <p>Citizenship<span class="required">*</span></p>
+            <input type="text" name="citizenship" id="citizenship" placeholder="Polish" value="{{ Applications[0]['country'] }}" required/>
+          </div>              
+          <div class="item">
+            <p>Level of completed studies<span class="required">*</span></p>
+            <input type="text" name="status" id="status" placeholder="Bachelor" value="{{ Applications[0]['status'] }}" required/>
+          </div>                
+          <div class="item">
+            <p>Attach your education documents:</p>
+            <textarea type="text" name="description1" placeholder="Type here" id="description1">{{  Applications[0]['docDescription'] }}</textarea>
+            <input type="file" name="file" id="file" value="{{ Applications[0]['document'] }}" required accept="file/*"/>
+         </div>
+         <div class="item">
+           <p>Attach passport image:</p>
+           <textarea type="text" name="description2" placeholder="Type here" id="description2">{{ Applications[0]['passDescription'] }}</textarea>
+           <input type="file" name="file2" id="file2" value="{{ Applications[0]['passport'] }}" required accept="file2/*"/>
+         </div>
+      </div>
+      <p>&ensp;&ensp;&ensp;Back To <a href="{{ url_for('blog.home') }}" target="_blank"> Home </a></p>   
+        
+     </form>
+    </div>
+  </body>
+</article>
