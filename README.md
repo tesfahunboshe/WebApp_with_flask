@@ -67,4 +67,4 @@ Jinja template library is used to render templates.
 
 **Other locations**
 
-The app was deployed to https://www.pythonanywhere.com/ 
+The app was deployed to https://tesfaboshe.pythonanywhere.com/ 
